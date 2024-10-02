@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer and Image Carousel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #colorButtons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #imageContainer {
+            margin-top: 20px;
+        }
+        #carouselImage {
+            width: 300px; 
+            height: 200px; 
+            object-fit: cover; 
+        }
+        #imageName {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #flowersheading{
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Color Changer and Image Carousel</h1>
+
+    <div id="colorButtons">
+        <button onclick="changeBackground('red')">Red</button>
+        <button onclick="changeBackground('yellow')">Yellow</button>
+        <button onclick="changeBackground('green')">Green</button>
+        <button onclick="changeBackground('black')">Black</button>
+        <button onclick="changeBackground('random')">Random</button>
+
+        <h2 id="flowersheading">Atlanta Special Flowers</h2>
+    <div id="imageContainer" >
+        <img  id="carouselImage" src="./pansy.jpg" alt="Image Carousel">
+        <br> 
+        
+        <button onclick="nextImage()">Next</button>
+    </div>
+
+    <script>
+        
+        function changeBackground(color) {
+            const colors = ['red', 'yellow', 'green', 'black'];
+            if (color === 'random') {
+                
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                document.body.style.backgroundColor = randomColor;
+            } else {
+                document.body.style.backgroundColor = color;
+            }
+        }
+
+        
+        const images = ['./pansy.jpg', './silver ragwort.jpeg.jpg', './snapdragons.jpg', './viola.jpg', './botanical.jpeg'];
+        let currentImageIndex = 0;
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            
+            document.getElementById('carouselImage').src = images[currentImageIndex];
+            document.getElementById('imageName').textContent = `Image ${currentImageIndex + 1}: ${currentImage}`;
+        }
+    </script>
+
+</body>
+</html>
